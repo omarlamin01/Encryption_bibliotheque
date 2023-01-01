@@ -1,12 +1,43 @@
 import string
 
 
+
+def modulo(a, b):
+    mod = a % b
+    if mod < 0:
+        mod += b
+    return mod
+
+
+def pgcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def modulo_inverse(a, b):
+    if pgcd(a, b) != 1:
+        return None
+    else:
+        a = modulo(a, b)
+        for x in range(1, b):
+            if modulo(a * x, b) == 1:
+                return x
+        return 1
+
+
 def cesar_encrypt(text, key):
     result = ""
     for i in range(len(text)):
-        char = text[i]
-        if char.isupper():
-            result += chr((ord(char) + key - 65) % 26 + 65)
-        else:
-            result += chr((ord(char) + key - 97) % 26 + 97)
+        index = ord(text[i])
+        new_index = modulo(index + key, 255)
+        result += chr(new_index)
+    return result
+
+
+def cesar_decrypt(text, key):
+    result = ""
+    for i in range(len(text)):
+        index = ord(text[i])
+        new_index = modulo(index - key, 255)
+        result += chr(new_index)
     return result
