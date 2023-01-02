@@ -1,6 +1,7 @@
-from app import cesar_encrypt, cesar_decrypt, affine_encrypt, affine_decrypt
+from app import cesar_encrypt, cesar_decrypt, affine_encrypt, affine_decrypt, vigenere_encrypt, vigenere_decrypt
 
 message = "Hello World"
+key = "music"
 
-print(affine_encrypt(message, 23, 19))
-print(affine_decrypt(affine_encrypt(message, 23, 19), 23, 19))
+print(vigenere_encrypt(message, key))
+print(vigenere_decrypt(vigenere_encrypt(message, key), key))

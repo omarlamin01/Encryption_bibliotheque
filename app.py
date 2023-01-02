@@ -63,5 +63,20 @@ def affine_decrypt(text, key_a, key_b):
         return result
 
 
+def vigenere_encrypt(text, key):
+    result = ""
+    for i in range(len(text)):
+        index = ord(text[i])
+        new_index = modulo(index + ord(key[i % len(key)]), 255)
+        result += chr(new_index)
+    return result
 
+
+def vigenere_decrypt(text, key):
+    result = ""
+    for i in range(len(text)):
+        index = ord(text[i])
+        new_index = modulo(index - ord(key[i % len(key)]), 255)
+        result += chr(new_index)
+    return result
 
