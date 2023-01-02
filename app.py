@@ -80,3 +80,17 @@ def vigenere_decrypt(text, key):
         result += chr(new_index)
     return result
 
+
+def adfgvx_encrypt(text, key):
+    matrix = [6][6]
+    for i in range(6):
+        for j in range(6):
+            matrix[i][j] = key[i * 6 + j]
+
+    result = ""
+    for i in range(len(text)):
+        index = ord(text[i])
+        new_index = modulo(index + ord(key[i % len(key)]), 255)
+        result += chr(new_index)
+    return result
+
