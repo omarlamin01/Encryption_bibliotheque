@@ -52,12 +52,15 @@ def affine_encrypt(text, key_a, key_b):
 
 
 def affine_decrypt(text, key_a, key_b):
-    result = ""
-    for i in range(len(text)):
-        index = ord(text[i])
-        new_index = modulo(modulo_inverse(key_a, 255) * (index - key_b), 255)
-        result += chr(new_index)
-    return result
+    if pgcd(key_a, 255) != 1:
+        return None
+    else:
+        result = ""
+        for i in range(len(text)):
+            index = ord(text[i])
+            new_index = modulo(modulo_inverse(key_a, 255) * (index - key_b), 255)
+            result += chr(new_index)
+        return result
 
 
 
