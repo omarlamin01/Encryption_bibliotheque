@@ -1,6 +1,6 @@
-from app import cesar_encrypt, cesar_decrypt
+from app import cesar_encrypt, cesar_decrypt, affine_encrypt, affine_decrypt
 
-message = " @#%$^&*() _+{} |:<>?~`"
+message = "Hello World"
 
-print(cesar_encrypt(message, 5))
-print(cesar_decrypt(cesar_encrypt(message, 5), 5))
+print(affine_encrypt(message, 23, 19))
+print(affine_decrypt(affine_encrypt(message, 23, 19), 23, 19))
